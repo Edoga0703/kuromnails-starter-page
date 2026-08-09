@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotros | Kuromnails</title>
+    <meta name="description" content="Conoce la historia de Kuromnailstudio, el estudio de uñas profesional ubicado en Puerto Ordaz, San Félix. Nails artist con diseños a mano alzada.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ---- PAGE SPECIFIC STYLES ---- */
+        .about-hero {
+            position: relative;
+            min-height: 55vh;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            overflow: hidden;
+            padding-bottom: 60px;
+        }
+
+        .about-hero-bg {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 4px;
+            opacity: 0.55;
+        }
+
+        .about-hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(10,5,15,0.3) 0%, rgba(10,5,15,0.95) 100%);
+        }
+
+        .about-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .about-hero-content .logo-circle {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-purple);
+            overflow: hidden;
+            margin: 0 auto 25px;
+            box-shadow: 0 0 30px rgba(199,138,255,0.5);
+        }
+
+        .about-hero-content .logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-hero-content h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .about-hero-content h1 span {
+            color: var(--primary-purple);
+        }
+
+        .tagline-box {
+            background: rgba(199,138,255,0.12);
+            border: 1px solid rgba(199,138,255,0.3);
+            border-radius: 50px;
+            padding: 12px 30px;
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 1.05rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .location-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--secondary-purple);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        /* Bio Section */
+        .bio-section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .bio-text h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .bio-text h2 span { color: var(--primary-purple); }
+
+        .bio-text p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        .bio-text p strong {
+            color: var(--text-light);
+        }
+
+        .bio-text .highlight-quote {
+            background: linear-gradient(135deg, rgba(157,78,221,0.15), rgba(255,102,178,0.1));
+            border-left: 3px solid var(--primary-purple);
+            padding: 20px 25px;
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+            color: var(--text-light);
+            font-size: 1.05rem;
+            margin: 25px 0;
+        }
+
+        /* Photo Grid */
+        .bio-photos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .bio-photos .photo-card {
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            position: relative;
+        }
+
+        .bio-photos .photo-card:first-child {
+            grid-column: 1 / -1;
+            aspect-ratio: 16/9;
+        }
+
+        .bio-photos .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .bio-photos .photo-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Stats strip */
+        .stats-strip {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 50px 5%;
+        }
+
+        .stats-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item .number {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary-purple);
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-item .label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Values */
+        .values-section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .values-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+            font-weight: 800;
+        }
+
+        .values-section h2 span { color: var(--primary-purple); }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .value-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px 25px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(199,138,255,0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .value-card .emoji { font-size: 2.5rem; margin-bottom: 15px; }
+        .value-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+        .value-card p { color: var(--text-muted); font-size: 0.9rem; }
+
+        /* CTA Banner */
+        .cta-banner {
+            margin: 0 5% 80px;
+            background: linear-gradient(135deg, var(--secondary-purple), var(--accent-pink));
+            border-radius: 24px;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .cta-banner h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .cta-banner p {
+            opacity: 0.9;
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+        }
+
+        .cta-banner a {
+            background: white;
+            color: var(--secondary-purple);
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s;
+        }
+
+        .cta-banner a:hover { transform: scale(1.05); }
+
+        @media (max-width: 900px) {
+            .bio-grid { grid-template-columns: 1fr; }
+            .bio-photos .photo-card:first-child { aspect-ratio: 4/3; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <p>✨ Envíos gratis en compras mayores a $50 | 10% OFF en tu primera cita ✨</p>
+    </div>
+
+    <!-- Header -->
+    <header class="ecommerce-header">
+        <div class="header-left">
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+            <div class="logo-container">
+                <a href="index.html" style="display:flex;align-items:center;gap:10px;">
+                    <img src="assets/logo.jpg" alt="Kuromnails Logo" class="logo-img" onerror="this.src='https://placehold.co/100x100/b677ff/000000?text=K'">
+                    <span class="logo-text">Kuromnails</span>
+                </a>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="index.html#productos">Productos</a></li>
+                <li><a href="index.html#citas">Agendar Cita</a></li>
+                <li><a href="nosotros.html" style="color: var(--primary-purple);">Nosotros</a></li>
+            </ul>
+        </nav>
+        <div class="header-icons">
+            <a href="buscar.html" class="icon-btn"><i class="fas fa-search"></i></a>
+            <a href="contacto.html" class="icon-btn"><i class="far fa-user"></i></a>
+            <a href="https://wa.me/584124077501" target="_blank" class="icon-btn"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </header>
+
+    <!-- Hero con fotos de mosaico -->
+    <section class="about-hero">
+        <div class="about-hero-bg">
+            <img src="assets/photo1.jpg" alt="" onerror="this.src='assets/service_acrilicas.jpg'">
+            <img src="assets/photo2.jpg" alt="" onerror="this.src='assets/service_kapping.jpg'">
+            <img src="assets/photo3.jpg" alt="" onerror="this.src='assets/service_nailart.jpg'">
+            <img src="assets/photo4.jpg" alt="" onerror="this.src='assets/service_retoque.jpg'">
+        </div>
+        <div class="about-hero-content">
+            <div class="logo-circle">
+                <img src="assets/logo.jpg" alt="Kuromnails" onerror="this.src='https://placehold.co/150x150/b677ff/000000?text=K'">
+            </div>
+            <h1>Kurom<span>Nails</span></h1>
+            <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 10px;">Nails Artist 💅💜 · Diseños a Mano Alzada 🖌️</p>
+            <div class="tagline-box">
+                Transforma tus manos de Albañil 👷🏻‍♀️<br>en manos de <strong>Princesa 👸✨</strong>
+            </div>
+            <br>
+            <div class="location-chip">
+                <i class="fas fa-map-marker-alt"></i> San Félix / Puerto Ordaz, Bolívar
+            </div>
+        </div>
+    </section>
+
+    <!-- Biografía -->
+    <section class="bio-section">
+        <div class="bio-grid">
+            <div class="bio-text">
+                <h2>Nuestra <span>Historia</span></h2>
+                <p>
+                    <strong>Kuromnailstudio</strong> nació del amor por el arte y la belleza en la ciudad de <strong>Puerto Ordaz / San Félix</strong>, en el corazón del estado Bolívar. Lo que comenzó como una pasión por transformar uñas, se convirtió en un estudio profesional con identidad propia: una mezcla única entre lo gótico, lo tierno y lo elegante — todo inspirado en la icónica Kuromi 💜.
+                </p>
+                <p>
+                    Con años de experiencia en el oficio, nuestra Nails Artist se ha especializado en diseños completamente a mano alzada, esculpidas en acrílico y kapping en gel, siempre utilizando <strong>productos de la más alta calidad</strong>. Cada set de uñas es tratado como una obra de arte única, adaptada a la personalidad y al estilo de cada clienta.
+                </p>
+                <div class="highlight-quote">
+                    "Creemos que cada mujer merece sentirse como princesa. Por eso, ponemos toda nuestra dedicación en cada detalle, desde la preparación de la uña natural hasta el último toque de brillo."
+                </div>
+                <p>
+                    Estamos ubicadas en <strong>San Félix / Puerto Ordaz</strong> y atendemos con cita previa a través de WhatsApp, garantizando atención personalizada, un ambiente cómodo y resultados que hablan por sí solos.
+                </p>
+                <a href="https://wa.me/584124077501" target="_blank" class="btn-primary" style="display:inline-flex; align-items:center; gap:10px; margin-top:20px;">
+                    <i class="fab fa-whatsapp"></i> Agendar mi cita ahora
+                </a>
+            </div>
+
+            <!-- Galería de fotos -->
+            <div class="bio-photos">
+                <div class="photo-card">
+                    <img src="assets/photo1.jpg" alt="Trabajo Kuromnails" onerror="this.src='assets/service_kapping.jpg'">
+                </div>
+                <div class="photo-card">
+                    <img src="assets/photo2.jpg" alt="Trabajo Kuromnails" onerror="this.src='assets/service_acrilicas.jpg'">
+                </div>
+                <div class="photo-card">
+                    <img src="assets/photo3.jpg" alt="Trabajo Kuromnails" onerror="this.src='assets/service_nailart.jpg'">
+                </div>
+                <div class="photo-card">
+                    <img src="assets/photo4.jpg" alt="Trabajo Kuromnails" onerror="this.src='assets/service_retoque.jpg'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats-strip">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="number">+500</span>
+                <p class="label">Clientas Felices</p>
+            </div>
+            <div class="stat-item">
+                <span class="number">3+</span>
+                <p class="label">Años de Experiencia</p>
+            </div>
+            <div class="stat-item">
+                <span class="number">100%</span>
+                <p class="label">Diseños a Mano</p>
+            </div>
+            <div class="stat-item">
+                <span class="number">💜</span>
+                <p class="label">Con Amor y Detalle</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Valores -->
+    <section class="values-section">
+        <h2>Por qué elegir <span>Kuromnails</span></h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="emoji">🖌️</div>
+                <h3>Arte Original</h3>
+                <p>Todos nuestros diseños son pintados a mano alzada. Ninguna uña es igual a otra.</p>
+            </div>
+            <div class="value-card">
+                <div class="emoji">💎</div>
+                <h3>Calidad Premium</h3>
+                <p>Solo usamos insumos de primera calidad para cuidar la salud de tu uña natural.</p>
+            </div>
+            <div class="value-card">
+                <div class="emoji">📍</div>
+                <h3>Local y Cercano</h3>
+                <p>Estamos en San Félix / Puerto Ordaz para servirte con atención personalizada.</p>
+            </div>
+            <div class="value-card">
+                <div class="emoji">✨</div>
+                <h3>Acabado Profesional</h3>
+                <p>Cada cita termina con un resultado impecable, digno de princesa.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <div class="cta-banner">
+        <h2>¿Lista para transformar tus manos? 👸</h2>
+        <p>Agenda tu cita ahora y descubre por qué somos el estudio favorito de San Félix.</p>
+        <a href="https://wa.me/584124077501" target="_blank">
+            <i class="fab fa-whatsapp"></i> Escribenos por WhatsApp
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="ecommerce-footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <h3>Kuromnails</h3>
+                <p>Estudio de uñas y tienda de insumos profesionales.</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/kuromnails?igsh=YnVna3FvNjR5anVu" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/584124077501" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Enlaces Útiles</h4>
+                <ul>
+                    <li><a href="buscar.html">Buscar</a></li>
+                    <li><a href="politicas.html">Políticas de Envío</a></li>
+                    <li><a href="terminos.html">Términos del Servicio</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Horarios</h4>
+                <ul>
+                    <li>Lunes a Viernes: 9:00 AM - 6:00 PM</li>
+                    <li>Sábados: 10:00 AM - 2:00 PM</li>
+                    <li>Domingos: Cerrado</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Kuromnails. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
